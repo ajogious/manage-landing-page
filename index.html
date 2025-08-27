@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/main.css" />
+    <script defer src="js/script.js"></script>
     <title>Manage Landing Page</title>
   </head>
   <body>
@@ -26,7 +32,7 @@
             <a
               href="#"
               class="text-darkBlue font-bold hover:text-darkGrayishBlue"
-              >Product</a
+              >Products</a
             >
             <a
               href="#"
@@ -51,6 +57,50 @@
           >
             Get Started
           </a>
+
+          <!-- Hamburger -->
+          <button
+            id="menu-btn"
+            class="block hamburger md:hidden focus:outline-none"
+          >
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+          </button>
+        </div>
+
+        <!-- Mobile -->
+        <div class="md:hidden">
+          <div
+            id="menu"
+            class="absolute flex-col items-center self-end py-8 mt-80 hidden space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md"
+          >
+            <a
+              href="#"
+              class="text-darkBlue font-bold hover:text-darkGrayishBlue"
+              >Pricing</a
+            >
+            <a
+              href="#"
+              class="text-darkBlue font-bold hover:text-darkGrayishBlue"
+              >Products</a
+            >
+            <a
+              href="#"
+              class="text-darkBlue font-bold hover:text-darkGrayishBlue"
+              >About Us</a
+            >
+            <a
+              href="#"
+              class="text-darkBlue font-bold hover:text-darkGrayishBlue"
+              >Careers</a
+            >
+            <a
+              href="#"
+              class="text-darkBlue font-bold hover:text-darkGrayishBlue"
+              >Community</a
+            >
+          </div>
         </div>
       </nav>
       <!-- ===== Navbar End ===== -->
@@ -287,13 +337,16 @@
       <!-- ===== Footer Start ===== -->
       <footer class="bg-veryDarkBlue">
         <div
-          class="flex flex-col-reverse justify-between px-6 py-10 container mx-auto space-y-8 md:flex-row md:space-y-0"
+          class="flex flex-col-reverse justify-between px-6 py-10 container mx-auto space-y-8 space-x-6 md:flex-row md:space-y-0"
         >
           <div
             class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start"
           >
+            <div class="mx-auto my-6 text-center text-white md:hidden">
+              Copyright &copy; 2022, All Right Reserved
+            </div>
             <div>
-              <img src="images/logo-white.svg" alt="White logo" class="h-8" />
+              <img src="images/logo-white.svg" alt="White logo" class="" />
             </div>
             <div class="flex justify-center space-x-4">
               <a href="#">
@@ -311,6 +364,40 @@
               <a href="#">
                 <img src="images/icon-instagram.svg" alt="" />
               </a>
+            </div>
+          </div>
+          <div class="flex justify-around space-x-32">
+            <div class="flex flex-col space-y-3 text-white">
+              <a href="#" class="hover:text-brightRed">Home</a>
+              <a href="#" class="hover:text-brightRed">Pricing</a>
+              <a href="#" class="hover:text-brightRed">Products</a>
+              <a href="#" class="hover:text-brightRed">About</a>
+            </div>
+            <div class="flex flex-col space-y-3 text-white">
+              <a href="#" class="hover:text-brightRed">Careers</a>
+              <a href="#" class="hover:text-brightRed">Community</a>
+              <a href="#" class="hover:text-brightRed">Privacy Policy</a>
+            </div>
+          </div>
+
+          <div class="flex flex-col justify-between">
+            <form>
+              <div class="flex space-x-3">
+                <input
+                  type="text"
+                  class="flex-1 px-4 rounded-full focus:outline-brightRed text-brightRed font-600"
+                  placeholder="Update in your inbox"
+                />
+
+                <button
+                  class="px-6 py-2 text-white rounded-full bg-brightRed hover:bg-brightRedLight focus:outline-none"
+                >
+                  Go
+                </button>
+              </div>
+            </form>
+            <div class="hidden text-white opacity-60 text-sm ps-24 md:block">
+              Copyright &copy; 2022, All Right Reserved
             </div>
           </div>
         </div>
