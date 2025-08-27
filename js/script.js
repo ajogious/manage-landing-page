@@ -9,39 +9,29 @@ btn.addEventListener("click", () => {
 
 const slider = document.getElementById("testimonial-slider");
 const slides = Array.from(slider.children);
-const dotsWrap = document.getElementById("carousel-dots");
-const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
-let index = 0;
-let autoTimer = null;
-let touchStartX = 0;
-let touchEndX = 0;
+const dots = Array.from(
+  document.getElementById("carousel-dots").querySelectorAll(".dot")
+);
+let index = 0,
+  autoTimer = null,
+  touchStartX = 0,
+  touchEndX = 0;
 
-function isMobile() {
-  return window.innerWidth < 768;
-}
+const isMobile = () => window.innerWidth < 768;
 
 function setActiveDot(i) {
-  dots.forEach((d, n) => {
-    d.classList.remove("bg-brightRed"); // inactive = border only
-    if (n === i) d.classList.add("bg-brightRed"); // active = filled + border
-  });
+  dots.forEach((d, n) => d.classList.toggle("bg-brightRed", n === i));
 }
 
 function goTo(i) {
   index = (i + slides.length) % slides.length;
-  if (isMobile()) {
-    slider.style.transform = `translateX(-${index * 100}%)`;
-  } else {
-    slider.style.transform = ""; // no sliding on desktop
-  }
+  slider.style.transform = isMobile() ? `translateX(-${index * 100}%)` : "";
   setActiveDot(index);
 }
 
 function startAuto() {
   stopAuto();
-  if (isMobile()) {
-    autoTimer = setInterval(() => goTo(index + 1), 5000);
-  }
+  if (isMobile()) autoTimer = setInterval(() => goTo(index + 1), 5000);
 }
 function stopAuto() {
   if (autoTimer) {
@@ -50,7 +40,6 @@ function stopAuto() {
   }
 }
 
-// dots click
 dots.forEach((d, i) =>
   d.addEventListener("click", () => {
     stopAuto();
@@ -59,7 +48,6 @@ dots.forEach((d, i) =>
   })
 );
 
-// swipe (mobile)
 slider.addEventListener(
   "touchstart",
   (e) => {
@@ -68,6 +56,7 @@ slider.addEventListener(
   },
   { passive: true }
 );
+
 slider.addEventListener(
   "touchmove",
   (e) => {
@@ -75,18 +64,37 @@ slider.addEventListener(
   },
   { passive: true }
 );
+
 slider.addEventListener("touchend", () => {
   const dx = touchEndX - touchStartX;
   if (Math.abs(dx) > 50) goTo(index + (dx < 0 ? 1 : -1));
   startAuto();
 });
 
-// handle resize between mobile/desktop
 window.addEventListener("resize", () => {
   goTo(index);
   startAuto();
 });
 
-// init
 goTo(0);
 startAuto();
+
+const form = document.getElementById("newsletter-form");
+const emailInput = document.getElementById("newsletter-email");
+const errorMsg = document.getElementById("newsletter-error");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = emailInput.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!email || !emailRegex.test(email)) {
+    errorMsg.classList.remove("hidden");
+    emailInput.classList.add("border", "border-brightRed");
+  } else {
+    errorMsg.classList.add("hidden");
+    emailInput.classList.remove("border", "border-brightRed");
+    alert("Subscribed successfully 🎉");
+    form.reset();
+  }
+});
